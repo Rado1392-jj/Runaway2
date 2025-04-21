@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Runaway Button</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+      }
+      .btn {
+        padding: 15px 30px;
+        background-color: #007bff;
+        text-decoration: none;
+        border-radius: 10px;
+        font-size: 18px;
+        color: white;
+        position: absolute;
+        transition: all 0.1s ease; /* Faster movement */
+      }
+      .btn.runaway {
+        /* Position will be set by JavaScript */
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="images/فشار.edit.mp4" target="_blank" class="btn"
+      >اگه بتونی رو این کلیک کنی 50 میلیون تومن برنده میشی</a
+    >
+
+    <script>
+      const btn = document.querySelector(".btn");
+
+      btn.addEventListener("mouseover", function () {
+        // Generate random position (0 or 1 for each axis)
+        const randomX = Math.round(Math.random());
+        const randomY = Math.round(Math.random());
+
+        // Calculate new position
+        const newX = randomX * (window.innerWidth - this.offsetWidth - 20);
+        const newY = randomY * (window.innerHeight - this.offsetHeight - 20);
+
+        // Apply new position
+        this.style.left = newX + "px";
+        this.style.top = newY + "px";
+        this.classList.add("runaway");
+      });
+    </script>
+  </body>
+</html>
